@@ -12,7 +12,7 @@ static VALUE
 siphash_seed_get(VALUE self)
 {
 	if (!rb_ivar_defined(self, id_seed)) {
-		rb_ivar_set(self, id_seed, rb_str_new(DEFAULT_SEED, 16));
+		rb_ivar_set(self, id_seed, rb_usascii_str_new(DEFAULT_SEED, 16));
 	}
 	return rb_ivar_get(self, id_seed);
 }
@@ -140,7 +140,7 @@ Init_siphash(void)
 	rb_define_method(cDigest_SipHash, "to_i", siphash_to_i, 0);
 	rb_define_method(cDigest_SipHash, "seed", siphash_seed_get, 0);
 	rb_define_method(cDigest_SipHash, "seed=", siphash_seed_set, 1);
-	rb_define_const(cDigest_SipHash, "DEFAULT_SEED", rb_str_new(DEFAULT_SEED, 16));
+	rb_define_const(cDigest_SipHash, "DEFAULT_SEED", rb_usascii_str_new(DEFAULT_SEED, 16));
 	rb_define_singleton_method(cDigest_SipHash, "digest", siphash_s_digest, -1);
 	rb_define_singleton_method(cDigest_SipHash, "hexdigest", siphash_s_hexdigest, -1);
 	rb_define_singleton_method(cDigest_SipHash, "rawdigest", siphash_s_rawdigest, -1);
