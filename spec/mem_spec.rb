@@ -4,8 +4,8 @@ describe Digest::SipHash do
   it "gc safe" do
     sip = SipHash.new
     GC.start
-    sip.update ""
+    sip.update "siphash"
     GC.start
-    expect(sip.hexdigest).to eq("1e924b9d737700d7")
+    expect(sip.hexdigest).to eq("59caaeb90d542464")
   end
 end
