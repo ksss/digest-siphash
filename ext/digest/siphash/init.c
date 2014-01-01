@@ -138,10 +138,10 @@ Init_siphash(void)
 	cDigest_SipHash = rb_define_class_under(mDigest, "SipHash", cDigest_StringBuffer);
 	rb_define_private_method(cDigest_SipHash, "finish", siphash_finish, 0);
 	rb_define_method(cDigest_SipHash, "to_i", siphash_to_i, 0);
-	rb_define_singleton_method(cDigest_SipHash, "digest", siphash_s_digest, -1);
-	rb_define_singleton_method(cDigest_SipHash, "hexdigest", siphash_s_hexdigest, -1);
-	rb_define_singleton_method(cDigest_SipHash, "rawdigest", siphash_s_rawdigest, -1);
 	rb_define_method(cDigest_SipHash, "seed", siphash_seed_get, 0);
 	rb_define_method(cDigest_SipHash, "seed=", siphash_seed_set, 1);
 	rb_define_const(cDigest_SipHash, "DEFAULT_SEED", rb_str_new(DEFAULT_SEED, 16));
+	rb_define_singleton_method(cDigest_SipHash, "digest", siphash_s_digest, -1);
+	rb_define_singleton_method(cDigest_SipHash, "hexdigest", siphash_s_hexdigest, -1);
+	rb_define_singleton_method(cDigest_SipHash, "rawdigest", siphash_s_rawdigest, -1);
 }

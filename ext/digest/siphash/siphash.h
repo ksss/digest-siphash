@@ -3,26 +3,18 @@
 
 #include "ruby.h"
 
+#ifndef LITTLE_ENDIAN
 /* NO-OP for little-endian platforms */
-#if defined(__BYTE_ORDER__) && defined(__ORDER_LITTLE_ENDIAN__)
-#  if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-#    ifndef LITTLE_ENDIAN
+#  if defined(__BYTE_ORDER__) && defined(__ORDER_LITTLE_ENDIAN__)
+#    if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
 #      define LITTLE_ENDIAN 1
 #    endif
-#  endif
 /* if __BYTE_ORDER__ is not predefined (like FreeBSD), use arch */
-#elif defined(__i386)  || defined(__x86_64) ||  defined(__alpha) || defined(__vax)
-#  ifndef LITTLE_ENDIAN
+#  elif defined(__i386)  || defined(__x86_64) ||  defined(__alpha) || defined(__vax)
 #    define LITTLE_ENDIAN 1
 #  endif
-/* use __builtin_bswap64 if available */
-#elif defined(__GNUC__) || defined(__clang__)
-#  ifdef __has_builtin && __has_builtin(__builtin_bswap64)
-#    ifndef LITTLE_ENDIAN
-#      define LITTLE_ENDIAN 1
-#    endif
-#  endif
 #endif
+
 /* last resort (big-endian w/o __builtin_bswap64) */
 #ifndef LITTLE_ENDIAN
 #  define LITTLE_ENDIAN 0
@@ -33,7 +25,6 @@ typedef struct {
 	char* buffer;
 	char* p;
 	size_t memsize;
-	char* seed;
 } buffer_t;
 
 /*

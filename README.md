@@ -6,7 +6,8 @@ Digest::SipHash is a class of message digest use algorithm SipHash.
 
 ```ruby
 require 'digest/siphash'
-p Digest::SipHash.digest("") #=> "\x59\xca\xae\xb9\x0d\x54\x24\x64"
+
+p Digest::SipHash.digest("siphash") #=> "\x59\xca\xae\xb9\x0d\x54\x24\x64"
 p Digest::SipHash.hexdigest("siphash") #=> "59caaeb90d542464"
 ```
 
