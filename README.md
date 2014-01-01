@@ -1,4 +1,4 @@
-# Digest::Siphash
+# Digest::SipHash
 
 Digest::SipHash is a class of message digest use algorithm SipHash.
 
