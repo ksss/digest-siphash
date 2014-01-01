@@ -1,5 +1,7 @@
 # Digest::SipHash
 
+[![Build Status](https://travis-ci.org/ksss/digest-siphash.png)](https://travis-ci.org/ksss/digest-siphash)
+
 Digest::SipHash is a class of message digest use algorithm SipHash.
 
 ## Usage
