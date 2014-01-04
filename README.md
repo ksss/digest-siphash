@@ -27,11 +27,11 @@ and other way. instance use.
 ```ruby
 siphash = Digest::SipHash.new
 siphash.update "siphash"
-p siphash.digest #=> "\x88\x27\x68\x57\x0d\xc7\x1c\x92"
+p siphash.hexdigest #=> "59caaeb90d542464"
 
 # of course, can change seed value.
 siphash.seed = (0..0x0f).to_a.pack("C16")
-p siphash.hexdigest "siphash" #=> "882768570dc71c92"
+p siphash.hexdigest #=> "882768570dc71c92"
 ```
 
 ## Installation
