@@ -1,12 +1,8 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-
-require 'digest/siphash'
 
 Gem::Specification.new do |spec|
   spec.name          = "digest-siphash"
-  spec.version       = Digest::SipHash::VERSION
+  spec.version       = "1.0.1"
   spec.authors       = ["ksss"]
   spec.email         = ["co000ri@gmail.com"]
   spec.summary       = %q{Digest::SipHash is a class of message digest use algorithm SipHash.}
