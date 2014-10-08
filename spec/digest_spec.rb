@@ -7,7 +7,7 @@ describe Digest::SipHash do
   end
 
   it "initialize" do
-    expect(SipHash.new).to be_a_kind_of(StringBuffer)
+    expect(SipHash.new).to be_a_kind_of(Digest::Class)
   end
 
   it "DEFAULT_SEED" do
@@ -40,21 +40,21 @@ describe Digest::SipHash do
   end
 
   it "rawdigest" do
-    expect(SipHash.rawdigest("")).to eq(0x1e924b9d737700d7)
-    expect(SipHash.rawdigest("", seed)).to eq(0x726fdb47dd0e0e31)
-    expect(SipHash.rawdigest("\x00", seed)).to eq(0x74f839c593dc67fd)
-    expect(SipHash.rawdigest("\x00\x01", seed)).to eq(0x0d6c8009d9a94f5a)
+    expect(SipHash.rawdigest("")).to eq(0xd70077739d4b921e)
+    expect(SipHash.rawdigest("", seed)).to eq(0x310e0edd47db6f72)
+    expect(SipHash.rawdigest("\x00", seed)).to eq(0xfd67dc93c539f874)
+    expect(SipHash.rawdigest("\x00\x01", seed)).to eq(0x5a4fa9d909806c0d)
   end
 
   it "instance digest" do
     sip = SipHash.new
     sip.update ""
     expect(sip.digest).to eq("\x1e\x92\x4b\x9d\x73\x77\x00\xd7")
-    expect(sip.to_i).to eq(0x1e924b9d737700d7)
-    
+    expect(sip.to_i).to eq(0xd70077739d4b921e)
+
     sip.seed = seed
     expect(sip.digest).to eq("\x72\x6f\xdb\x47\xdd\x0e\x0e\x31")
-    expect(sip.to_i).to eq(0x726fdb47dd0e0e31)
+    expect(sip.to_i).to eq(0x310e0edd47db6f72)
   end
 end
 

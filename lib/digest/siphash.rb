@@ -1,6 +1,28 @@
-require "digest/stringbuffer"
-begin
-  require "digest/siphash/#{RUBY_VERSION[/\d+.\d+/]}/siphash"
-rescue LoadError
-  require "digest/siphash/siphash"
+require 'digest'
+require "digest/simple"
+
+module Digest
+  class SipHash < Simple
+    DEFAULT_SEED = "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00".encode('ASCII-8BIT')
+
+    def initialize
+      @seed = DEFAULT_SEED
+      super
+    end
+
+    def seed
+      @seed
+    end
+
+    def seed=(s)
+      fail ArgumentError, "seed string should 128 bit chars" if s.bytesize != 16
+      @seed = s
+    end
+
+    def to_i
+      finish.unpack("Q")[0]
+    end
+  end
 end
+
+require "digest/siphash/siphash"
