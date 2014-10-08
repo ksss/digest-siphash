@@ -3,6 +3,7 @@ require "digest/simple"
 
 module Digest
   class SipHash < Simple
+    VERSION = "1.0.0"
     DEFAULT_SEED = "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00".encode('ASCII-8BIT')
 
     def initialize
