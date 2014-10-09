@@ -48,6 +48,45 @@ Or install it yourself as:
 
     $ gem install digest-siphash
 
+## Simple benchmark
+
+```ruby
+#! /usr/bin/env ruby
+
+require 'benchmark'
+require 'digest/md5'
+require 'digest/sha1'
+require 'digest/murmurhash'
+require 'digest/siphash'
+
+include Digest
+
+n = 1000
+str = "teststrings" * 1024 * 10
+
+Benchmark.bm do |f|
+  [MurmurHash1, MurmurHash2, MurmurHash64A, SipHash, MD5, SHA1].each do |klass|
+    f.report(klass.to_s) {
+      i = 0
+      while i < n
+        klass.digest(str)
+        i += 1
+      end
+    }
+  end
+end
+```
+
+```
+       user     system      total        real
+Digest::MurmurHash1  0.050000   0.000000   0.050000 (  0.045282)
+Digest::MurmurHash2  0.030000   0.000000   0.030000 (  0.032420)
+Digest::MurmurHash64A  0.020000   0.000000   0.020000 (  0.015310)
+Digest::SipHash  0.070000   0.000000   0.070000 (  0.068238)
+Digest::MD5  0.150000   0.000000   0.150000 (  0.149649)
+Digest::SHA1  0.130000   0.000000   0.130000 (  0.133704)
+```
+
 ## See also
 
 [https://131002.net/siphash/](https://131002.net/siphash/)
